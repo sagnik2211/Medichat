@@ -1,45 +1,39 @@
-import React, { useState } from 'react';
-import './App.css';
+import React from "react";
+import "./ChatBox.css";
 
-const App = () => {
-  const [messages, setMessages] = useState([]);
-  const [userInput, setUserInput] = useState('');
-
-  const sendMessage = (e) => {
-    e.preventDefault();
-    const newMessage = {
-      id: messages.length,
-      text: userInput,
-      sender: 'user'
-    };
-    setMessages([...messages, newMessage]);
-    setUserInput('');
-    // Here you would typically send the message to the backend server or chatbot API
-    // and wait for a response to add to the messages array.
-  };
-
+const ChatBox = () => {
   return (
     <div className="chat-container">
-      <div className="chat-box">
-        {messages.map((message) => (
-          <div key={message.id} className={`message ${message.sender}`}>
-            {message.text}
-          </div>
-        ))}
+      <div className="chat-menu">
+        {/* Menu icon and other items can go here */}
       </div>
-      <form onSubmit={sendMessage} className="input-form">
-        <input
-          type="text"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          className="input-box"
-          placeholder="Type your message here..."
-          autoFocus
-        />
-        <button type="submit" className="send-button">Send</button>
-      </form>
+      <div className="chat-content">
+        <div className="search-bar">
+          {/* Search input and icons */}
+        </div>
+        <div className="messages">
+          {/* Map through messages here */}
+          <div className="message received">
+            <img src="/path-to-profile.jpg" alt="Profile" />
+            <div className="message-info">
+              <p>This AI chatbot has been developed to optimize communication and simplify work processes, ultimately leading to smoother operations.</p>
+            </div>
+          </div>
+          <div className="message sent">
+            <div className="message-info">
+              <p>Thank You :)</p>
+            </div>
+            <img src="/path-to-profile.jpg" alt="Profile" />
+          </div>
+          {/* More messages */}
+        </div>
+        <div className="chat-input">
+          <input type="text" placeholder="Type a new message here" />
+          {/* Send button and additional icons */}
+        </div>
+      </div>
     </div>
   );
 };
 
-export default App;
+export default ChatBox;
