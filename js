@@ -1,18 +1,41 @@
 import React, { useState } from "react";
-import "./ChatBox.css"; // Make sure the CSS file is named correctly and imported here
+import "./ChatBox.css"; // Ensure the CSS file is linked correctly
 
 const ChatBox = () => {
-  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([
+    { id: 1, text: "This AI chatbot has been developed to optimize communication and simplify work processes, ultimately leading to smoother operations.", sender: 'bot' },
+    // ... any initial messages can be added here
+  ]);
+  const [newMessage, setNewMessage] = useState("");
 
-  // Handle the change event for the input field
-  const handleChange = (e) => {
-    setMessage(e.target.value);
+  // Function to handle the sending of a message
+  const handleSendMessage = () => {
+    if (newMessage.trim() !== "") {
+      const nextMessage = {
+        id: messages.length + 1, // simplistic id generation for example purposes
+        text: newMessage,
+        sender: 'user'
+      };
+      setMessages([...messages, nextMessage]);
+      setNewMessage("");
+    }
   };
 
-  // Handle the sending of a message (for now, it will just clear the input)
-  const handleSend = () => {
-    console.log(message); // For now, we just log the message to the console
-    setMessage(""); // Clear the message input
+  // Function to handle input change
+  const handleInputChange = (event) => {
+    setNewMessage(event.target.value);
+  };
+
+  // Function to render the messages
+  const renderMessages = () => {
+    return messages.map((message) => (
+      <div className={`message ${message.sender}`} key={message.id}>
+        <img src={message.sender === 'bot' ? "bot-placeholder-image.png" : "user-placeholder-image.png"} alt={message.sender} className="profile-picture" />
+        <div className="message-bubble">
+          <p>{message.text}</p>
+        </div>
+      </div>
+    ));
   };
 
   return (
@@ -25,31 +48,16 @@ const ChatBox = () => {
           {/* Insert search input and icons here */}
         </div>
         <div className="messages">
-          {/* Example of a received message */}
-          <div className="message received">
-            <img src="/path-to-profile.jpg" alt="Profile" className="profile-picture" />
-            <div className="message-bubble">
-              <p>This AI chatbot has been developed to optimize communication and simplify work processes, ultimately leading to smoother operations.</p>
-            </div>
-          </div>
-          {/* Example of a sent message */}
-          <div className="message sent">
-            <div className="message-bubble">
-              <p>Thank You :)</p>
-            </div>
-            <img src="/path-to-profile.jpg" alt="Profile" className="profile-picture" />
-          </div>
-          {/* Add more messages here */}
+          {renderMessages()}
         </div>
         <div className="chat-input">
           <input 
             type="text" 
             placeholder="Type a new message here" 
-            value={message}
-            onChange={handleChange}
+            value={newMessage}
+            onChange={handleInputChange}
           />
-          <button onClick={handleSend}>Send</button>
-          {/* Add icons if needed */}
+          <button onClick={handleSendMessage}>Send</button>
         </div>
       </div>
     </div>
