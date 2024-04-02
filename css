@@ -1,52 +1,65 @@
 .chat-container {
-  max-width: 600px;
-  margin: auto;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  height: 70vh;
+  height: 100vh;
 }
 
-.chat-box {
-  flex-grow: 1;
-  padding: 10px;
-  overflow-y: auto;
+.chat-menu {
+  width: 75px;
+  background-color: #000000;
+  /* Add styles for menu icons */
+}
+
+.chat-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+}
+
+.search-bar {
+  /* Style your search bar */
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
 }
 
 .message {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.received {
+  justify-content: flex-start;
+}
+
+.sent {
+  justify-content: flex-end;
+}
+
+.message img {
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.message-info p {
+  margin: 0;
   padding: 10px;
   border-radius: 20px;
-  color: white;
-  max-width: 80%;
+  background-color: #f0f0f0;
 }
 
-.user {
-  background-color: #007bff;
-  align-self: flex-end;
-}
-
-.input-form {
-  display: flex;
-  border-top: 1px solid #ddd;
-}
-
-.input-box {
-  flex-grow: 1;
+.chat-input {
+  border-top: 1px solid #ccc;
   padding: 10px;
-  border: none;
-  outline: none;
 }
 
-.send-button {
+.chat-input input {
+  width: 100%;
   padding: 10px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid #ccc;
 }
 
+/* You should continue to fill in the styles based on the visual design of the chat interface */
