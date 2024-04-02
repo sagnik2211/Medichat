@@ -1,35 +1,55 @@
-import React from "react";
-import "./ChatBox.css";
+import React, { useState } from "react";
+import "./ChatBox.css"; // Make sure the CSS file is named correctly and imported here
 
 const ChatBox = () => {
+  const [message, setMessage] = useState("");
+
+  // Handle the change event for the input field
+  const handleChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  // Handle the sending of a message (for now, it will just clear the input)
+  const handleSend = () => {
+    console.log(message); // For now, we just log the message to the console
+    setMessage(""); // Clear the message input
+  };
+
   return (
     <div className="chat-container">
       <div className="chat-menu">
-        {/* Menu icon and other items can go here */}
+        {/* Insert menu icons here */}
       </div>
       <div className="chat-content">
         <div className="search-bar">
-          {/* Search input and icons */}
+          {/* Insert search input and icons here */}
         </div>
         <div className="messages">
-          {/* Map through messages here */}
+          {/* Example of a received message */}
           <div className="message received">
-            <img src="/path-to-profile.jpg" alt="Profile" />
-            <div className="message-info">
+            <img src="/path-to-profile.jpg" alt="Profile" className="profile-picture" />
+            <div className="message-bubble">
               <p>This AI chatbot has been developed to optimize communication and simplify work processes, ultimately leading to smoother operations.</p>
             </div>
           </div>
+          {/* Example of a sent message */}
           <div className="message sent">
-            <div className="message-info">
+            <div className="message-bubble">
               <p>Thank You :)</p>
             </div>
-            <img src="/path-to-profile.jpg" alt="Profile" />
+            <img src="/path-to-profile.jpg" alt="Profile" className="profile-picture" />
           </div>
-          {/* More messages */}
+          {/* Add more messages here */}
         </div>
         <div className="chat-input">
-          <input type="text" placeholder="Type a new message here" />
-          {/* Send button and additional icons */}
+          <input 
+            type="text" 
+            placeholder="Type a new message here" 
+            value={message}
+            onChange={handleChange}
+          />
+          <button onClick={handleSend}>Send</button>
+          {/* Add icons if needed */}
         </div>
       </div>
     </div>
